@@ -1,9 +1,6 @@
 import requests
 import torch
 
-API_URL = "https://api-inference.huggingface.co/models/bigcode/starcoderbase-1b"
-headers = {"Authorization": "Bearer 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"}
-
 def query(payload):
     response = requests.post(API_URL, headers=headers, json=payload)
     return response.json()
@@ -21,7 +18,8 @@ device = "cuda" if torch.cuda.is_available() else "cpu"
 tokenizer = AutoTokenizer.from_pretrained(checkpoint)
 model = AutoModelForCausalLM.from_pretrained(checkpoint).to(device)
 
-inputs = tokenizer.encode("def print_hello_world():", return_tensors="pt").to(device)
+input = "show in python cosinus function"
+inputs = tokenizer.encode(input, return_tensors="pt").to(device)
 outputs = model.generate(inputs)
 print(tokenizer.decode(outputs[0]))
 

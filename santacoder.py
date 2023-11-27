@@ -26,7 +26,7 @@ input_text = "<fim-prefix>def print_hello_world():\n    <fim-suffix>\n    print(
 inputs = tokenizer.encode(input_text, return_tensors="pt").to(device)
 outputs = model.generate(inputs)
 print(tokenizer.decode(outputs[0]))
-
+# Author Santa Coder --> Hugging Face
 import gradio as gr
 from transformers import AutoTokenizer, AutoModelForCausalLM, set_seed
 from transformers import pipeline
