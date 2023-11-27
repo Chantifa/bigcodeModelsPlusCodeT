@@ -1,22 +1,24 @@
 import requests
 import torch
 
-def query(payload):
-    response = requests.post(API_URL, headers=headers, json=payload)
-    return response.json()
-
-output = query({
-    "inputs": "Can you please let us know more details about your ",
-})
-
 # pip install -q transformers
 from transformers import AutoModelForCausalLM, AutoTokenizer
 
+# download the code
 checkpoint = ("bigcode/starcoderbase-1b")
+
+# chose gpu or cpu
 device = "cuda" if torch.cuda.is_available() else "cpu"
 
 tokenizer = AutoTokenizer.from_pretrained(checkpoint)
 model = AutoModelForCausalLM.from_pretrained(checkpoint).to(device)
+
+# save the model to the local cache
+tokenizer.save_pretrained("C:/Users/X/.cache/huggingface/hub/models--bigcode--starcoderbase-1b")
+model.save_pretrained("C:/Users/X/.cache/huggingface/hub/models--bigcode--starcoderbase-1b")
+
+tokenizer = AutoTokenizer.from_pretrained("C:/Users/X/.cache/huggingface/hub/models--bigcode--starcoderbase-1b", local_files_only=True)
+model = AutoModelForCausalLM.from_pretrained("C:/Users/X/.cache/huggingface/hub/models--bigcode--starcoderbase-1b", local_files_only=True).to(device)
 
 input = "show in python cosinus function"
 inputs = tokenizer.encode(input, return_tensors="pt").to(device)

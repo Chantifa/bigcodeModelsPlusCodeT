@@ -2,6 +2,7 @@
 from transformers import pipeline
 import torch
 
+# work remote
 pipe = pipeline("text-generation", model="bigcode/santacoder", trust_remote_code=True)
 
 # Load model directly
