@@ -14,8 +14,9 @@ resume_download=True)
 tokenizer.save_pretrained("C:/Users/X/.cache/huggingface/hub/models--Salesforce--codet5-small")
 model.save_pretrained("C:/Users/X/.cache/huggingface/hub/models--Salesforce--codet5-small")
 
-tokenizer = RobertaTokenizer.from_pretrained("C:/Users/X/.cache\huggingface/hub/models--Salesforce--codet5-small/snapshots/a642dc934e5475185369d09ac07091dfe72a31fc", local_files_only=True)
-model = T5ForConditionalGeneration.from_pretrained("C:/Users/X/.cache\huggingface/hub/models--Salesforce--codet5-small/snapshots/a642dc934e5475185369d09ac07091dfe72a31fc", local_files_only=True)
+# work offline with the downloaded model C:/Users/{username}/.cache/huggingface/hub/{modelname}/snapshot/{id}
+tokenizer = RobertaTokenizer.from_pretrained("C:/Users/X/.cache/huggingface/hub/models--Salesforce--codet5-small/snapshots/a642dc934e5475185369d09ac07091dfe72a31fc", local_files_only=True)
+model = T5ForConditionalGeneration.from_pretrained("C:/Users/X/.cache/huggingface/hub/models--Salesforce--codet5-small/snapshots/a642dc934e5475185369d09ac07091dfe72a31fc", local_files_only=True)
 text = "def greet(user): print(f'hello <extra_id_0>!')"
 input_ids = tokenizer(text, return_tensors="pt").input_ids
 
