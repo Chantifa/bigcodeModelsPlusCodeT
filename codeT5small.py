@@ -3,7 +3,7 @@ from transformers import RobertaTokenizer, T5ForConditionalGeneration
 
 device = "cuda" if torch.cuda.is_available() else "cpu"# for GPU usage or "cpu" for CPU usage
 
-checkpoint = "Salesforce/codet5-small"
+checkpoint = "Salesforce/codet5-small" #hier enter the LLM of your choice
 tokenizer = RobertaTokenizer.from_pretrained(checkpoint)
 model = T5ForConditionalGeneration.from_pretrained(checkpoint,torch_dtype=torch.float16,
 trust_remote_code=True,
